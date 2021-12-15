@@ -7,6 +7,7 @@ const saveUserDetailsRoute = require('./routes/saveUserDetailsRoute');
 const verifyRoute = require('./routes/verifyRoute');
 const saveBlogPostRoute = require('./routes/saveBlogPostRoute');
 const getPostsRoute = require('./routes/getPostsRoute');
+const getPostRoute = require('./routes/getPostRoute');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use('/api',saveUserDetailsRoute.routes);
 app.use('/api',verifyRoute.routes);
 app.use('/api',saveBlogPostRoute.routes);
 app.use('/api',getPostsRoute.routes);
+app.use('/api',getPostRoute.routes);
 
 app.listen(config.port, ()=>{
     console.log(`Example app listening at http://localhost:${config.port}`);

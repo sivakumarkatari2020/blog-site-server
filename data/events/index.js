@@ -80,6 +80,19 @@ const getPosts = async () => {
     }
 }
 
+const getPost = async (id) => {
+    try{
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('events');
+        const getPost = await pool.request()
+                                    .input('post_id',sql.NVarChar(50),id)
+                                    .query(sqlQueries.getPost);
+        return getPost.recordset;
+    }catch (error) {
+        return error.message;
+    }
+}
+
 const saveBlogPost = async (values) => {
     try{
         let pool = await sql.connect(config.sql);
@@ -110,6 +123,7 @@ const saveBlogPost = async (values) => {
 module.exports = {
     saveUserDetails,
     getPosts,
+    getPost,
     verifyUser,
     saveBlogPost,
 }
